@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pnaskardev/ivykids_backend#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http": "^0.0.1-security",

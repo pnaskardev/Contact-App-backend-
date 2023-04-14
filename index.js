@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+
+
 // IMPORTS FROM FILES
 const authRouter = require('./routes/auth');
 
@@ -14,6 +16,7 @@ const app = express();
 
 
 // MIDDLEWARES
+app.use(express.json());
 app.use('/auth', authRouter);
 
 

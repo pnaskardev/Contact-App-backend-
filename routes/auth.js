@@ -8,5 +8,6 @@ const authController=require('../controllers/auth_controller');
 const authRouter=express.Router();
 
 authRouter.post("/signup",authController.postSignupUser);
+authRouter.get("/signup",authController.postSignupUser);
 
 module.exports=authRouter;
