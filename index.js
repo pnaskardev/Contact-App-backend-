@@ -8,7 +8,13 @@ const dotenv = require('dotenv');
 const authRouter = require('./routes/auth');
 const contactRouter=require('./routes/contacts');
 
-
+// CONNECTIONS
+mongoose.connect(process.env.DB_URI)
+.then(() => 
+{
+    console.log("Connection Succesful")
+})
+.catch(err => console.log(err));
 
 // INIT
 dotenv.config();
@@ -21,10 +27,5 @@ app.use('/auth', authRouter);
 app.use('/contacts',contactRouter);
 
 
-// CONNECTIONS
-mongoose.connect(process.env.DB_URI)
-    .then(() => {
-        console.log("Connection Succesful")
-    })
-    .catch(err => console.log(err));
+
 app.listen(process.env.PORT, "0.0.0.0");
