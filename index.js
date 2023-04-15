@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 // IMPORTS FROM FILES
 const authRouter = require('./routes/auth');
-
+const contactRouter=require('./routes/contacts');
 
 
 
@@ -18,6 +18,7 @@ const app = express();
 // MIDDLEWARES
 app.use(express.json());
 app.use('/auth', authRouter);
+app.use('/contacts',contactRouter);
 
 
 // CONNECTIONS

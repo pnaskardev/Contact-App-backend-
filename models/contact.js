@@ -2,19 +2,20 @@ const mongoose=require('mongoose');
 
 // IMPORTS FROM FILES
 const validator=require('../utils/validators');
-const {contactSchema}=require('./contact');
-const userSchema=mongoose.Schema
+
+
+const contactSchema=mongoose.Schema
 ({
     name:
     {
-        required:true,
         type:String,
+        require:true,
         trim:true
     },
     phone:
     {
-        required:true,
         type:String,
+        require:true,
         trim:true,
         validate:
         {
@@ -27,8 +28,8 @@ const userSchema=mongoose.Schema
     },
     email:
     {
-        required:true,
         type:String,
+        require:true,
         trim:true,
         validate:
         {
@@ -38,20 +39,8 @@ const userSchema=mongoose.Schema
             },
             message:"Please enter a valid email address"
         }
-    },
-    password:
-    {
-        required:true,
-        type:String,
-    },
-    contacts:
-    {
-        type:[contactSchema],
-        required:true,
-        default:[]
     }
 });
 
-const User=mongoose.model('User',userSchema);
-
-module.exports=User;
+const Contact=mongoose.model("Contact",contactSchema);
+module.exports={Contact,contactSchema};

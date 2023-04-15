@@ -46,6 +46,7 @@ exports.tokenIsValid=async (req,res,next)=>
 // SIGN UP
 exports.postSignupUser=async (req,res,next)=>
 {
+    console.log
     try 
     {
         const {name,phone,email,password}=await req.body;
@@ -70,7 +71,8 @@ exports.postSignupUser=async (req,res,next)=>
             name,
             password:hashedPassword,
             phone,
-            email
+            email,
+            contacts:[]
         })
         user=await user.save();
         // res.status(200).json(user);
