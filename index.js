@@ -8,6 +8,11 @@ const dotenv = require('dotenv');
 const authRouter = require('./routes/auth');
 const contactRouter=require('./routes/contacts');
 
+// INIT
+dotenv.config();
+const app = express();
+
+
 // CONNECTIONS
 mongoose.connect(process.env.DB_URI)
 .then(() => 
@@ -16,15 +21,15 @@ mongoose.connect(process.env.DB_URI)
 })
 .catch(err => console.log(err));
 
-// INIT
-dotenv.config();
-const app = express();
-
-
 // MIDDLEWARES
 app.use(express.json());
 app.use('/auth', authRouter);
 app.use('/contacts',contactRouter);
+app.use('/',(res,req,next)=>
+{
+    console.log('Hello World');
+    res.statusCode(200);
+});
 
 
 
