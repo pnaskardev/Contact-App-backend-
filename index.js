@@ -17,10 +17,10 @@ const app = express();
 app.use(express.json());
 app.use('/auth', authRouter);
 app.use('/contacts',contactRouter);
-app.use('/',(res,req,next)=>
+app.use('/', (req, res, next) => 
 {
     console.log('Hello World');
-    res.statusCode(200);
+    res.json({ message: 'OK!!' });
 });
 
 // CONNECTIONS
