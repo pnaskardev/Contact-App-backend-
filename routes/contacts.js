@@ -9,16 +9,20 @@ const contactController=require('../controllers/contact_controller');
 const contactsRouter=express.Router();
 
 // GET LIST OF CONTACTS
-contactsRouter.get("/get-contacts",contactController.postAddContact);
+contactsRouter.get("/get-contacts",contactController.getAllContacts,(req,res)=>
+{
+    const contacts = req.contacts;
+    res.json(contacts);
+});
 
 // POST ADD CONTACT
 contactsRouter.post("/add-contact",contactController.postAddContact);
 
 // EDIT CONTACT
-contactsRouter.patch("/edit-contact",contactController.postAddContact);
+contactsRouter.patch("/edit-contact",contactController.patchEditContact);
 
 // DELETE CONTACT
-contactsRouter.delete("/delete-contact",contactController.postAddContact);
+contactsRouter.delete("/delete-contact",contactController.postDeleteContact);
 
 
 module.exports=contactsRouter;
