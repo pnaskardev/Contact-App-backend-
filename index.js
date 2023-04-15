@@ -20,6 +20,7 @@ app.use('/contacts',contactRouter);
 app.use('/',(res,req,next)=>
 {
     console.log('Hello World');
+    res.statusCode(200);
 });
 
 // CONNECTIONS
