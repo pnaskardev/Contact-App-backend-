@@ -5,12 +5,13 @@ const User=require('../models/user');
 const {Contact}=require('../models/contact');
 
 
+
 // GET ALL CONTACTS
 exports.getAllContacts=async(req,res,next)=>
 {
     try 
     {
-        const userId = req.query.id;
+        const userId =await req.query.userId;
         console.log(userId);
         const user = await User.findById(userId);
         if (!user) 
@@ -18,8 +19,13 @@ exports.getAllContacts=async(req,res,next)=>
             return res.status(404).json({ error: 'User not found' });
         }
         const contacts = user.contacts;
-        req.contacts = contacts;
-        next();
+        res.json(contacts);
+        // req.contacts = contacts;
+        // (req,res)=>
+        // {
+        //     const contacts = req.contacts;
+        //     res.json(contacts);
+        // }
     } 
       catch (err) 
       {
@@ -34,7 +40,7 @@ exports.postAddContact=async(req,res,next)=>
     console.log('insidee post add contact');
     try 
     {
-        const userId=await req.query.id;
+        const userId=await req.query.userId;
         const user=await User.findById(userId);
         if (!user) 
         {

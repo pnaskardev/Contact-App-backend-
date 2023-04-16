@@ -1,9 +1,12 @@
 // IMPORTS FROM PACKAGES
 const bcryptJs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
+const dotenv=require('dotenv');
 // IMPORTS FROM FILES
 const User=require('../models/user');
 
+// INIT
+dotenv.config();
 exports.getUserData=async(req,res,next)=>
 {
     try 
@@ -13,7 +16,7 @@ exports.getUserData=async(req,res,next)=>
         {
             return res.status(401).json({msg:'No auth token access denied'});
         }
-        const verified=jwt.verify(token,"passwordKey");
+        const verified=jwt.verify(token,process.env.PASS_KEY);
         if(!verified)return res.status(401).json({msg:'Token verification failed authorization denied'});
 
         req.user=verified.id;
@@ -30,7 +33,7 @@ exports.tokenIsValid=async (req,res,next)=>
     {
         const token=req.header('x-auth-token');
         if(!token) return res.json(false);
-        const verified=jwt.verify(token,"passwordKey");
+        const verified=jwt.verify(token,process.env.PASS_KEY);
         if(!verified)return res.json(false);
 
         const user=await User.findById(verified.id);
