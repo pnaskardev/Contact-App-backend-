@@ -47,7 +47,7 @@ exports.postAddContact=async(req,res,next)=>
         );
         if (existingContact) 
         {
-            return res.status(400).json({ message: 'Contact already exists' });
+            return res.status(400).json({ msg: 'Contact already exists' });
         }
         const contact =new Contact({name,phone,email});
         if (!user.contacts) 
