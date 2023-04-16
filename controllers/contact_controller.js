@@ -140,7 +140,8 @@ exports.patchEditContact= async (req,res,next)=>
           });
         user.contacts.set(contactIndex, updatedContact);
         await user.save();
-        res.status(200).json(user.contacts[contactIndex]);
+        // res.status(200).json(user.contacts[contactIndex]);
+        res.status(200).json(user);
     }
     catch (error) {
         console.error(error);
