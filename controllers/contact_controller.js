@@ -96,7 +96,7 @@ exports.patchEditContact= async (req,res,next)=>
     try 
     {
         const { userId, contactId } = req.query;
-        // console.log(userId);
+        console.log(`${userId}`+' '+`${contactId}`);
         const { name, email, phone } = req.body;
         const updateFields = 
         {
@@ -104,22 +104,7 @@ exports.patchEditContact= async (req,res,next)=>
             "contacts.$.email": email,
             "contacts.$.phone": phone,
         };
-        // const user = await User.findByIdAndUpdate(
-        // userId,
-        // {
-        //     $set: {
-        //     'contacts.$[contact].name': name,
-        //     'contacts.$[contact].email': email,
-        //     'contacts.$[contact].phone': phone,
-        //     },
-        // },
-        // {
-        //     new: true,
-        //     // arrayFilters: [{ 'contact._id': contactId }],
-        //     arrayFilters: [{ '_id': contactId }],
-        // }
-        // );
-        const user = await User.findById(userId);
+        var user = await User.findById(userId);
         if (!user) 
         {
             return res.status(404).send({ error: 'User not found' });
@@ -140,6 +125,7 @@ exports.patchEditContact= async (req,res,next)=>
           });
         user.contacts.set(contactIndex, updatedContact);
         await user.save();
+        user=await User.findById(userId);
         // res.status(200).json(user.contacts[contactIndex]);
         res.status(200).json(user);
     }
