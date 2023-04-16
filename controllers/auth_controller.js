@@ -41,8 +41,10 @@ exports.tokenIsValid=async (req,res,next)=>
 
         res.json(true);
         
-    } catch (error) {
-        
+    } catch (error) 
+    {
+        console.log(error.message);
+        res.status(500).json({message:"Invalid token"});    
     }
 }
 
